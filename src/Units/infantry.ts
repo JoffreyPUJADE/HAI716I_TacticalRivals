@@ -1,6 +1,6 @@
 import { Unit } from "./unit";
 
-class Infantry implements Unit {
+export class Infantry implements Unit {
     health: number;
     power: number;
     armor: number;

@@ -9,7 +9,7 @@ export interface Tile {
    */
   defense: number;
   /**
-   * Indique si cette case peutêtre traversée ou non.
+   * Indique si cette case peut être traversée ou non.
    */
   obstacle: boolean;
   /**
