@@ -18,5 +18,9 @@ export interface Unit {
      * Nombre de case maximum de déplacement
      */
     speed: number,
+    /**
+     * Portée d'attaque de l'unité
+     */
+    range: number
 }
 

@@ -1,6 +1,6 @@
 import { Urban } from "./urban";
 
-export class Factory extends Urban {
+export class Base extends Urban {
 
     constructor() {
         super();
