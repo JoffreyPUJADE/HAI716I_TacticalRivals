@@ -2,6 +2,7 @@ package GraphicsPack;
 
 import Tiles.*;
 import Units.*;
+import MainPack.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -102,6 +103,28 @@ public class MapPanel extends JPanel {
                 }
             }
         }
+    }
+    
+    public ArrayList<ArrayList<Unit>> getUnits(Player p)
+    {
+    	ArrayList<ArrayList<Unit>> arrayRes = new ArrayList<>();
+    	
+    	for(int i=0;i<m_units.size();++i)
+    	{
+    		ArrayList<Unit> arrayTemp = new ArrayList<Unit>();
+    		
+    		for(int j=0;j<m_units.get(i).size();++j)
+    		{
+    			if(m_units.get(i).get(j).getPlayer() == p)
+    			{
+    				arrayTemp.add(m_units.get(i).get(j));
+    			}
+    		}
+    		
+    		arrayRes.add(arrayTemp);
+    	}
+    	
+    	return arrayRes;
     }
 
 

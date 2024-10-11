@@ -41,6 +41,11 @@ public abstract class Unit
 		return m_range;
 	}
 	
+	public Player getPlayer()
+	{
+		return m_player;
+	}
+	
 	public void setHealth(int health)
 	{
 		m_health = health;
