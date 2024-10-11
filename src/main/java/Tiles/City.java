@@ -1,9 +1,11 @@
 package Tiles;
 
+import MainPack.Player;
+
 public class City extends Urban
 {
-	public City()
+	public City(String color)
 	{
-		super("data/sprite/blue/ville.png");
+		super("data/sprite/"+ color +"/ville.png");
 	}
 }

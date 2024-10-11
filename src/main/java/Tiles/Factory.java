@@ -1,9 +1,11 @@
 package Tiles;
 
+import MainPack.Player;
+
 public class Factory extends Urban
 {
-	public Factory()
+	public Factory(String color)
 	{
-		super("data/sprite/blue/usine.png");
+		super("data/sprite/"+ color +"/usine.png");
 	}
 }

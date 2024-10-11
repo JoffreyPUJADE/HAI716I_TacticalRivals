@@ -25,21 +25,24 @@ public class MapPanel extends JPanel {
             for (ArrayList<TileData> rowType : mapType) {
                 ArrayList<Tile> row = new ArrayList<>();
                 for (TileData tileType : rowType) {
+
+                    String color = tileType.getColor(); // blue or red
+
                     switch (tileType.getType()) {
                         case "plains":
                             row.add(new Plain());
                             break;
                         case "city":
-                            row.add(new City());
+                            row.add(new City(color));
                             break;
                         case "water":
                             row.add(new Water());
                             break;
                         case "factory":
-                            row.add(new Factory());
+                            row.add(new Factory(color));
                             break;
                         case "base":
-                            row.add(new Base());
+                            row.add(new Base(color));
                             break;
                         default:
                              System.out.println(tileType.getType());
@@ -57,7 +60,14 @@ public class MapPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Première passe: Dessiner toutes les tuiles normales
+        // Taille d'une tile (par exemple 32x32 pixels)
+        int tileSize = 32;
+
+        // Calculer les décalages pour centrer la carte
+        int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 2;
+        int yOffset = (getHeight() - (m_map.size() * tileSize)) / 2;
+
+        // Première passe: Dessiner les tuiles normales (Plain, Water)
         for (int row = 0; row < m_map.size(); row++) {
             for (int col = 0; col < m_map.get(row).size(); col++) {
                 Tile tile = m_map.get(row).get(col);
@@ -67,13 +77,14 @@ public class MapPanel extends JPanel {
                     if (img != null) {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
-                        g.drawImage(img, col * 32, row * 32, width * 2, height * 2, this);
+                        // Appliquer les décalages pour centrer les tuiles
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + row * tileSize, width * 2, height * 2, this);
                     }
                 }
             }
         }
 
-        // Deuxième passe: Dessiner les bâtiments ou autres objets qui peuvent dépasser
+        // Deuxième passe: Dessiner les bâtiments (City, Factory, Base)
         for (int row = 0; row < m_map.size(); row++) {
             for (int col = 0; col < m_map.get(row).size(); col++) {
                 Tile tile = m_map.get(row).get(col);
@@ -83,8 +94,8 @@ public class MapPanel extends JPanel {
                     if (img != null) {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
-                        // Dessiner à une position légèrement décalée pour simuler le dépassement
-                        g.drawImage(img, col * 32, (row * 32) - (height), width * 2, height * 2, this);
+                        // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (height), width * 2, height * 2, this);
                     }
                 }
             }

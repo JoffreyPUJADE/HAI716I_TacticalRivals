@@ -1,59 +1,59 @@
 {
   "map": [
     [
-      { "type": "base" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "factory" }
+      { "type": "factory" , "color": "blue"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "blue"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "blue"}, { "type": "plains" , "color": "null"}, { "type": "base" , "color": "blue"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "factory" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "factory" , "color": "null"}
     ],
     [
-      { "type": "water" }, { "type": "water" }, { "type": "plains" }, { "type": "water" }, { "type": "water" },
-      { "type": "water" }, { "type": "water" }, { "type": "water" }, { "type": "water" }, { "type": "water" },
-      { "type": "water" }, { "type": "water" }, { "type": "plains" }, { "type": "water" }, { "type": "water" }
+      { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"},
+      { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"},
+      { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "factory" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "factory" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
-      { "type": "base" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
-      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "factory" }
+      { "type": "base" , "color": "red"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "city" , "color": "red"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "red"}, { "type": "plains" , "color": "null"}, { "type": "factory" , "color": "red"}
     ]
   ]
 }

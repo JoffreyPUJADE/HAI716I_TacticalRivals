@@ -1,5 +1,6 @@
 package Tiles;
 
+import MainPack.Player;
 import Units.Unit;
 
 public abstract class Tile
@@ -15,7 +16,6 @@ public abstract class Tile
 		m_obstacle = obstacle;
 		m_occupiedBy = occupiedBy;
 		m_sprite = sprite;
-		
 	}
 
 	public String getSprite() {
