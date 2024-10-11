@@ -17,4 +17,20 @@ public abstract class Tile
 		m_sprite = sprite;
 		
 	}
+
+	public String getSprite() {
+		return m_sprite;
+	}
+
+	public Unit getOccupiedBy() {
+		return m_occupiedBy;
+	}
+
+	public boolean isObstacle() {
+		return m_obstacle;
+	}
+
+	public int getDefense() {
+		return m_defense;
+	}
 }

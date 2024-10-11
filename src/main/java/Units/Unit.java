@@ -16,4 +16,24 @@ public abstract class Unit
 		m_speed = speed;
 		m_range = range;
 	}
+
+	public int getHealth() {
+		return m_health;
+	}
+
+	public int getPower() {
+		return m_power;
+	}
+
+	public int getArmor() {
+		return m_armor;
+	}
+
+	public int getSpeed() {
+		return m_speed;
+	}
+
+	public int getRange() {
+		return m_range;
+	}
 }
