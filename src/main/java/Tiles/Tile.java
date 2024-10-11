@@ -7,4 +7,14 @@ public abstract class Tile
 	protected int m_defense;
 	protected boolean m_obstacle;
 	protected Unit m_occupiedBy;
+	protected String m_sprite;
+	
+	public Tile(int defense, boolean obstacle, Unit occupiedBy, String sprite)
+	{
+		m_defense = defense;
+		m_obstacle = obstacle;
+		m_occupiedBy = occupiedBy;
+		m_sprite = sprite;
+		
+	}
 }
