@@ -1,6 +1,7 @@
 package GraphicsPack;
 
 import Tiles.*;
+import Units.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class MapPanel extends JPanel {
 
     private ArrayList<ArrayList<Tile>> m_map;
+    private ArrayList<ArrayList<Unit>> m_units;
 
     public MapPanel() {
         MapData mapData = MapLoader.loadMap("data/map/map.json");
