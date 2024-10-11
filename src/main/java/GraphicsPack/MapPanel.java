@@ -17,13 +17,15 @@ public class MapPanel extends JPanel {
     public MapPanel() {
         m_map = new ArrayList<>();
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             ArrayList<Tile> tiles = new ArrayList<>();
-            for (int j = 0; j < 20; j++) {
+            for (int j = 0; j < 30; j++) {
                 tiles.add(new Plain());
             }
             m_map.add(tiles);
         }
+        
+        setVisible(true);
     }
 
     @Override
@@ -54,8 +56,8 @@ public class MapPanel extends JPanel {
 
     public int[] getMapSize(){
         int[] size = new int[2];
-        size[0] = m_map.size();
-        size[1] = m_map.get(0).size();
+        size[1] = m_map.size();
+        size[0] = m_map.get(0).size();
         return size;
     }
 }
