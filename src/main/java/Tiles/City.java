@@ -4,6 +4,6 @@ public class City extends Urban
 {
 	public City()
 	{
-		super("");
+		super("data/sprite/blue/ville.png");
 	}
 }

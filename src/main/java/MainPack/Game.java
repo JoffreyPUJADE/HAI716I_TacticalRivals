@@ -15,7 +15,7 @@ public class Game {
 
         int[] map_size = m_map.getMapSize();
 
-        Window win = new Window("Tactical Rivals", map_size[0]*32, map_size[1]*32);
+        Window win = new Window("Tactical Rivals", map_size[0]*34, map_size[1]*36);
         
         win.add(m_map);
     }

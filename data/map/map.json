@@ -1,0 +1,59 @@
+{
+  "map": [
+    [
+      { "type": "base" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "factory" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "factory" }
+    ],
+    [
+      { "type": "water" }, { "type": "water" }, { "type": "plains" }, { "type": "water" }, { "type": "water" },
+      { "type": "water" }, { "type": "water" }, { "type": "water" }, { "type": "water" }, { "type": "water" },
+      { "type": "water" }, { "type": "water" }, { "type": "plains" }, { "type": "water" }, { "type": "water" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "factory" }
+    ],
+    [
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "city" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }
+    ],
+    [
+      { "type": "base" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "plains" }, { "type": "plains" },
+      { "type": "plains" }, { "type": "plains" }, { "type": "city" }, { "type": "plains" }, { "type": "factory" }
+    ]
+  ]
+}

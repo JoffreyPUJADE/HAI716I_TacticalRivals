@@ -4,6 +4,6 @@ public class Factory extends Urban
 {
 	public Factory()
 	{
-		super("");
+		super("data/sprite/blue/usine.png");
 	}
 }
