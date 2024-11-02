@@ -10,9 +10,11 @@ import Units.Infantry;
 public class Player
 {
 	private int m_gold;
+	private String m_color;
 	
-	public Player()
+	public Player(String color)
 	{
+		m_color = color;
 		m_gold = 500;
 	}
 	
@@ -39,5 +41,13 @@ public class Player
 	public void generateUnit(Unit u, Factory f)
 	{
 		//
+	}
+
+	public int getGold() {
+		return m_gold;
+	}
+
+	public String getColor() {
+		return m_color;
 	}
 }

@@ -4,13 +4,14 @@ import GraphicsPack.MapPanel;
 import GraphicsPack.Window;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game {
 
     private MapPanel m_map;
+    private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new Player("blue"), new Player("red")));
 
     public Game() {
-
         this.m_map = new MapPanel();
 
         int[] map_size = m_map.getMapSize();
@@ -22,5 +23,9 @@ public class Game {
 
     public int start() {
         return 0;
+    }
+
+    public static ArrayList<Player> getPlayers() {
+        return m_players;
     }
 }

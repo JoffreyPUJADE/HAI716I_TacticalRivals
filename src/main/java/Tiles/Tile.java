@@ -9,13 +9,15 @@ public abstract class Tile
 	protected boolean m_obstacle;
 	protected Unit m_occupiedBy;
 	protected String m_sprite;
+	protected String m_color;
 	
-	public Tile(int defense, boolean obstacle, Unit occupiedBy, String sprite)
+	public Tile(int defense, boolean obstacle, Unit occupiedBy, String color, String sprite)
 	{
 		m_defense = defense;
 		m_obstacle = obstacle;
 		m_occupiedBy = occupiedBy;
 		m_sprite = sprite;
+		m_color = color;
 	}
 
 	public String getSprite() {
@@ -32,5 +34,9 @@ public abstract class Tile
 
 	public int getDefense() {
 		return m_defense;
+	}
+
+	public String getColor() {
+		return m_color;
 	}
 }

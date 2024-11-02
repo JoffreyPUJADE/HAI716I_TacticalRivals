@@ -6,6 +6,6 @@ public class City extends Urban
 {
 	public City(String color)
 	{
-		super("data/sprite/"+ color +"/ville.png");
+		super("data/sprite/"+ color +"/ville.png", color);
 	}
 }

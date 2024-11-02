@@ -6,6 +6,6 @@ public class Base extends Urban
 {
 	public Base(String color)
 	{
-		super("data/sprite/"+color+"/qg.png");
+		super("data/sprite/"+ color +"/qg.png", color);
 	}
 }

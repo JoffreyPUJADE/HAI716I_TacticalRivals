@@ -1,5 +1,6 @@
 package GraphicsPack;
 
+import MainPack.Game;
 import Tiles.*;
 import Units.*;
 import MainPack.Player;
@@ -53,6 +54,26 @@ public class MapPanel extends JPanel {
                 }
                 m_map.add(row);
             }
+
+            m_units = new ArrayList<>(m_map.size());
+            for (int i = 0; i < m_map.size(); i++) {
+                ArrayList<Unit> row = new ArrayList<>();
+                for (int j = 0; j < m_map.get(i).size(); j++) {
+                    Tile tile = m_map.get(i).get(j);
+                    row.add(null);
+                    if (tile instanceof City) {
+                        String color = tile.getColor();
+                        ArrayList<Player> players = Game.getPlayers();
+
+                        for (Player player : players){
+                            if (player.getColor().equals(color)){
+                                row.set(j, new Infantry(player));
+                            }
+                        }
+                    }
+                }
+                m_units.add(row);
+            }
         }
         setVisible(true);
     }
@@ -63,7 +84,6 @@ public class MapPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Taille d'une tile (par exemple 32x32 pixels)
         int tileSize = 32;
 
         // Calculer les décalages pour centrer la carte
@@ -99,6 +119,24 @@ public class MapPanel extends JPanel {
                         int height = img.getHeight(null);
                         // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
                         g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (height), width * 2, height * 2, this);
+                    }
+                }
+            }
+        }
+
+        // Troisième passe: Dessiner les unités (Soldat, Tank, Artillerie)
+        for (int row = 0; row < m_units.size(); row++) {
+            for (int col = 0; col < m_units.get(row).size(); col++) {
+                Unit unit = m_units.get(row).get(col);
+                if (unit != null) {
+                    System.out.println(unit.getSprite());
+                    Image img = loadImage(unit.getSprite());
+
+                    if (img != null) {
+                        int width = img.getWidth(null);
+                        int height = img.getHeight(null);
+                        // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize), width * 2, height * 2, this);
                     }
                 }
             }
