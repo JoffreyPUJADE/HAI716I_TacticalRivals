@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Game {
 	private MapPanel m_map;
-	private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new PlayerAttack("blue"), new PlayerAttack("red")));
+	private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new Capturer("blue"), new Capturer("red")));
 
 	public Game()
 	{

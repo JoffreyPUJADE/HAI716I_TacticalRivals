@@ -1,8 +1,8 @@
 package MainPack;
 
-public class PlayerDefense extends Player
+public class Capturer extends Player
 {
-	public PlayerDefense(String color)
+	public Capturer(String color)
 	{
 		super(color);
 	}

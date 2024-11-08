@@ -1,8 +1,8 @@
 package MainPack;
 
-public class PlayerAttack extends Player
+public class Rusher extends Player
 {
-	public PlayerAttack(String color)
+	public Rusher(String color)
 	{
 		super(color);
 	}

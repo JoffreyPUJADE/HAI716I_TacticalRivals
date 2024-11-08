@@ -21,14 +21,14 @@ public abstract class Player
 	// Assume that U1 is unit of current player.
 	public void attack(Unit u1, Unit u2)
 	{
-		int u1Damage = u2.getPower() - (u1.getArmor() % 10);
-		int u2Damage = u1.getPower() - (u2.getArmor() % 10);
+		int u1Damage = (int) (u2.getPower() - (u1.getArmor() * 0.5));
+		int u2Damage = (int) (u1.getPower() - (u2.getArmor() * 0.2));
 		
 		u1.setHealth(u1.getHealth() - u1Damage);
 		u2.setHealth(u1.getHealth() - u2Damage);
 	}
 	
-	public int move(Unit u, Tile t)
+	public void move(Unit u, Tile t)
 	{
 		t.takeTile(u);
 	}
