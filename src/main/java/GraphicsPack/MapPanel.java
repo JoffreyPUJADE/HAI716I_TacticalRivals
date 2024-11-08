@@ -80,6 +80,10 @@ public class MapPanel extends JPanel {
         setVisible(true);
     }
 
+    public Map<Tile, int[]> scanTilesAroundUnit(int speed) {
+        Map<Tile, int[]> tiles = new HashMap<>();
+        return tiles;
+    }
 
 
     @Override
@@ -89,7 +93,7 @@ public class MapPanel extends JPanel {
         int tileSize = 64;
 
         // Calculer les décalages pour centrer la carte
-        int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 2;
+        int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 4;
         int yOffset = (getHeight() - (m_map.size() * tileSize)) / 2;
 
         // Première passe: Dessiner les tuiles normales (Plain, Water)

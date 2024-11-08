@@ -1,11 +1,16 @@
 package MainPack;
 
+import GraphicsPack.MapPanel;
+import Tiles.Base;
 import Tiles.Tile;
 import Tiles.Urban;
 import Tiles.Factory;
 
 import Units.Unit;
 import Units.Infantry;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Player
 {
@@ -49,6 +54,19 @@ public abstract class Player
 
 	public void addGold(int gold) {
 		m_gold += gold;
+	}
+
+	public boolean isWinner() {
+		Game game = new Game();
+		MapPanel map = game.getMap();
+		ArrayList<Base> bases = map.getBases();
+		int count = 0;
+		for (Base base : bases){
+			if (Objects.equals(base.getColor(), this.getColor())){
+				count++;
+			}
+		}
+        return count == bases.size();
 	}
 	
 	public abstract boolean play();

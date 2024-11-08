@@ -29,7 +29,7 @@ public class Game {
 		boolean anyWinner = false;
 		while (!anyWinner){
 			for (Player player : m_players){
-
+				addGold(player);
 				boolean isWinner = player.play();
 				if (isWinner) {
 					anyWinner = true;
