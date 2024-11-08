@@ -7,7 +7,7 @@ import Tiles.Factory;
 import Units.Unit;
 import Units.Infantry;
 
-public class Player
+public abstract class Player
 {
 	private int m_gold;
 	private String m_color;
@@ -100,6 +100,8 @@ public class Player
 			f.takeTile(u); // L'unité est créée sur la factory.
 		}
 	}
+	
+	public abstract int play();
 
 	public int getGold() {
 		return m_gold;
