@@ -11,6 +11,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MapPanel extends JPanel {
 
@@ -129,7 +131,6 @@ public class MapPanel extends JPanel {
             for (int col = 0; col < m_units.get(row).size(); col++) {
                 Unit unit = m_units.get(row).get(col);
                 if (unit != null) {
-                    System.out.println(unit.getSprite());
                     Image img = loadImage(unit.getSprite());
 
                     if (img != null) {
@@ -165,6 +166,44 @@ public class MapPanel extends JPanel {
     	return arrayRes;
     }
 
+    public Map<Unit, int[]> getCoordOfAllUnits() {
+        Map<Unit, int[]> units = new HashMap<>();
+        for (int i = 0; i < m_units.size(); i++) {
+            for (int j = 0; j < m_units.get(i).size(); j++) {
+                Unit unit = m_units.get(i).get(j);
+                if (unit != null) {
+                    units.put(unit, new int[]{i, j});
+                }
+            }
+        }
+        return units;
+    }
+
+
+    public Map<Urban, int[]> getCoordOfAllCapturableTiles(String playerColor) {
+        Map<Urban, int[]> tiles = new HashMap<>();
+        for (int i = 0; i < m_map.size(); i++) {
+            for (int j = 0; j < m_map.get(i).size(); j++) {
+                Urban tile = m_map.get(i).get(j) instanceof Urban ? (Urban) m_map.get(i).get(j) : null;
+                if (tile != null && !tile.getColor().equals(playerColor)) {
+                    tiles.put(tile, new int[]{i, j});
+                }
+            }
+        }
+        return tiles;
+    }
+
+    public ArrayList<Base> getBases() {
+        ArrayList<Base> bases = new ArrayList<>();
+        for (int i = 0; i < m_map.size(); i++) {
+            for (int j = 0; j < m_map.get(i).size(); j++) {
+                if (m_map.get(i).get(j) instanceof Base) {
+                    bases.add((Base) m_map.get(i).get(j));
+                }
+            }
+        }
+        return bases;
+    }
 
     // Méthode pour charger l'image depuis le chemin donné
     private Image loadImage(String path) {
@@ -185,5 +224,9 @@ public class MapPanel extends JPanel {
 
     public ArrayList<ArrayList<Tile>> getMap() {
         return m_map;
+    }
+
+    public ArrayList<ArrayList<Unit>> getUnits() {
+        return m_units;
     }
 }
