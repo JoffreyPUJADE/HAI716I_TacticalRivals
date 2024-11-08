@@ -30,17 +30,75 @@ public class Player
 	
 	public int move(Unit u, Tile t)
 	{
-		return 0;
+		/*
+			Basique :
+				- Tile occupée ?
+					- On ne bouge pas.
+				- Tile inoccupée ?
+					- On la prend.
+			/!\ : Ne pas oublier de "libérer" la tile précédemment occupée par l'unité. ie : trouver sur la map la tile courante de l'unité pour mettre "m_occupiedBy" à null.
+		*/
+		
+		if(t.getOccupiedBy() != null)
+		{
+			return -1; // Tile occupée.
+		}
+		
+		t.takeTile(u);
+		
+		return 1; // Tile inoccupée et prise.
 	}
 	
 	public void capture(Infantry i, Urban u)
 	{
-		//
+		/*
+			Basique :
+			- Tile occupée ?
+				- On attaque l'unité adverse
+				- Unité adverse vivante ?
+					- Attente du prochain tour
+				- Unité adverse morte ?
+					- La tile appartient à notre unité
+			- Tile inoccupée ?
+				- La tile appartient à notre unité
+		*/
+		
+		Unit occupied = u.getOccupiedBy();
+		
+		if(occupied != null)
+		{
+			attack(i, occupied);
+			
+			/*if(!occupied.isDead())
+			{
+				return -1; // Tile occupée et unité adverse toujours vivante.
+			}
+			else
+			{
+				u.takeTile(i);
+				
+				return 0; // Tile occupée, unité adverse morte et tile prise.
+			}*/
+			
+			if(occupied.isDead())
+			{
+				u.takeTile(i);
+			}
+		}
+		
+		// Arrivé ici : Tile inoccupée.
+		
+		u.takeTile(i);
+		
+		//return 1; // Tile inoccupée et prise.
 	}
 	
 	public void generateUnit(Unit u, Factory f)
 	{
-		//
+		if(f.getOccupiedBy() == null && u.getCost() <= m_gold) // Rajouter le fait que le factory nous appartienne
+		{
+			f.takeTile(u); // L'unité est créée sur la factory.
+		}
 	}
 
 	public int getGold() {

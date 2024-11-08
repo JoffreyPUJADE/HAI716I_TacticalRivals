@@ -11,8 +11,9 @@ public abstract class Unit
 	protected int m_range;
 	protected Player m_player;
 	protected String m_sprite;
+	protected int m_cost;
 	
-	public Unit(int health, int power, int armor, int speed, int range, Player player, String sprite)
+	public Unit(int health, int power, int armor, int speed, int range, Player player, String sprite, int cost)
 	{
 		m_health = health;
 		m_power = power;
@@ -21,6 +22,7 @@ public abstract class Unit
 		m_range = range;
 		m_player = player;
 		m_sprite = sprite;
+		m_cost = cost;
 	}
 
 	public int getHealth() {
@@ -50,6 +52,11 @@ public abstract class Unit
 
 	public String getSprite() {
 		return m_sprite;
+	}
+	
+	public int getCost()
+	{
+		return m_cost;
 	}
 
 	public void setHealth(int health)

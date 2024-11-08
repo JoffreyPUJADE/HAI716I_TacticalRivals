@@ -39,4 +39,9 @@ public abstract class Tile
 	public String getColor() {
 		return m_color;
 	}
+	
+	public void takeTile(Unit u)
+	{
+		m_occupiedBy = u;
+	}
 }
