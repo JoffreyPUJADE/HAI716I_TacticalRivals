@@ -86,7 +86,7 @@ public class MapPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int tileSize = 32;
+        int tileSize = 64;
 
         // Calculer les décalages pour centrer la carte
         int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 2;
@@ -103,7 +103,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages pour centrer les tuiles
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + row * tileSize, width * 2, height * 2, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + row * tileSize, width * 4, height * 4, this);
                     }
                 }
             }
@@ -120,7 +120,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (height), width * 2, height * 2, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (height*2), width * 4, height * 4, this);
                     }
                 }
             }
@@ -137,7 +137,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize), width * 2, height * 2, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize), width * 4, height * 4, this);
                     }
                 }
             }
@@ -164,6 +164,19 @@ public class MapPanel extends JPanel {
     	}
     	
     	return arrayRes;
+    }
+
+    public ArrayList<City> getCities(String color) {
+        ArrayList<City> cities = new ArrayList<>();
+        for (int i = 0; i < m_map.size(); i++) {
+            for (int j = 0; j < m_map.get(i).size(); i++){
+                City city = m_map.get(i).get(j) instanceof City ? (City) m_map.get(i).get(j) : null;
+                if (city != null && city.getColor().equals(color)){
+                    cities.add(city);
+                }
+            }
+        }
+        return cities;
     }
 
     public Map<Unit, int[]> getCoordOfAllUnits() {

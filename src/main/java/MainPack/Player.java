@@ -37,13 +37,18 @@ public abstract class Player
 	{
 		u.takeTile(i);
 	}
-	
+
 	public void generateUnit(Unit u, Factory f)
 	{
 		if(f.getOccupiedBy() == null && u.getCost() <= m_gold) // Rajouter le fait que le factory nous appartienne
 		{
 			f.takeTile(u); // L'unité est créée sur la factory.
+			m_gold -= u.getCost();
 		}
+	}
+
+	public void addGold(int gold) {
+		m_gold += gold;
 	}
 	
 	public abstract int play();
