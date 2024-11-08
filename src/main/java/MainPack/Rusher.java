@@ -8,8 +8,8 @@ public class Rusher extends Player
 	}
 	
 	@Override
-	public int play()
+	public boolean play()
 	{
-		return 0;
+		return false;
 	}
 }

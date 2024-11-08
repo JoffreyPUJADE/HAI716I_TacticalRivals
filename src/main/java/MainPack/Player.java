@@ -51,7 +51,7 @@ public abstract class Player
 		m_gold += gold;
 	}
 	
-	public abstract int play();
+	public abstract boolean play();
 
 	public int getGold() {
 		return m_gold;

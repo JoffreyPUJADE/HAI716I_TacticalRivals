@@ -11,6 +11,7 @@ import java.util.Arrays;
 public class Game {
 	private MapPanel m_map;
 	private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new Capturer("blue"), new Rusher("red")));
+	private static Game instance;
 
 	public Game()
 	{
@@ -29,8 +30,8 @@ public class Game {
 		while (!anyWinner){
 			for (Player player : m_players){
 
-				int isWinner = player.play();
-				if (isWinner == 0) {
+				boolean isWinner = player.play();
+				if (isWinner) {
 					anyWinner = true;
 					System.out.println("Player " + player.getColor() + "  win !");
 				}
@@ -46,5 +47,16 @@ public class Game {
 	public static ArrayList<Player> getPlayers()
 	{
 		return m_players;
+	}
+
+	public static Game getInstance() {
+		if (instance == null) {
+			instance = new Game();
+		}
+		return instance;
+	}
+
+	public MapPanel getMap() {
+		return m_map;
 	}
 }
