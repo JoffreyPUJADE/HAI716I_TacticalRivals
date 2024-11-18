@@ -31,7 +31,7 @@ public class Capturer extends Player
 		for (Unit unit : units.keySet()){
 			boolean actionDone = false;
 			if (unit.getPlayer() == this){
-				int[] coords = units.get(unit);
+				int[] coords = units.get(unit); // Récupère les coordonnées de l'unité
 				Map<Tile, int[]> tiles = map.scanTilesAroundUnit(coords, unit.getSpeed()-1);
 
 				Map<Unit, int[]> infoUnit = new HashMap<>();
@@ -40,10 +40,8 @@ public class Capturer extends Player
 				infoUnit.put(unit, coords);
 				// Stratégie : Chercher à capturer les ennemis en premier, sinon attaquer des unités
 				// sinon se diriger vers la base
-
 				for (Tile tile : tiles.keySet()){
 					if (tile instanceof Urban && !Objects.equals(tile.getColor(), getColor())){
-
 						infoUnit.put(unit, coords);
 						infoTile.put(tile, tiles.get(tile));
 						boolean objectifReached = moveDistanceManhattan(infoUnit, infoTile);
@@ -57,15 +55,26 @@ public class Capturer extends Player
 				}
 
 				if (!actionDone){
-
 					for (Tile tile : tiles.keySet()){
-
 						if (tile.getOccupiedBy() != null && !Objects.equals(tile.getOccupiedBy().getPlayer().getColor(), getColor())){
-							infoUnit.put(unit, coords);
-							infoTile.put(tile, tiles.get(tile));
-							moveDistanceManhattan(infoUnit, infoTile);
-							actionDone = true;
-							break;
+
+							int[] enemyCoords = units.get(tile.getOccupiedBy());
+							int distance = Math.abs(coords[0] - enemyCoords[0]) + Math.abs(coords[1] - enemyCoords[1]);
+							int attackRange = unit.getRange();
+							if (distance <= attackRange) {
+								attack(unit, tile.getOccupiedBy());
+								actionDone = true;
+								break;
+							} else {
+								infoUnit.put(unit, coords);
+								infoTile.put(tile, tiles.get(tile));
+								boolean objectifReached = moveDistanceManhattan(infoUnit, infoTile);
+								if (objectifReached) {
+									attack(unit, tile.getOccupiedBy());
+									actionDone = true;
+									break;
+								}
+							}
 						}
 					}
 
@@ -79,7 +88,6 @@ public class Capturer extends Player
 						moveDistanceManhattan(infoUnit, infoTile);
 					}
 				}
-
 			}
 		}
 

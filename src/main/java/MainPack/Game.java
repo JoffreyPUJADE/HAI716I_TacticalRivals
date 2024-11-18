@@ -21,11 +21,8 @@ public class Game {
 		int[] map_size = m_map.getMapSize();
 
 		Window window = new Window("Tactical Rivals", map_size[0], map_size[1]);
-
-		// Obtention de la taille de l'écran principal
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		// Configuration de la taille et de la position de la fenêtre
 		window.setBounds(0, 0, screenSize.width, screenSize.height);
 		window.add(m_map);
 	}
@@ -37,14 +34,14 @@ public class Game {
 			int turn = 1;
 			while (!anyWinner){
 				for (Player player : m_players) {
-					System.out.println("Turn " + turn + " of player " + player.getColor());
-					TimeUnit.SECONDS.sleep(1);
+					System.out.println("\n\n------------ Turn " + turn + " of player " + player.getColor() + " ------------");
+					TimeUnit.MILLISECONDS.sleep(500);
 					addGold(player);
-					TimeUnit.SECONDS.sleep(1);
+					TimeUnit.MILLISECONDS.sleep(500);
 					boolean isWinner = player.play();
 					if (isWinner) {
 						anyWinner = true;
-						System.out.println("Player " + player.getColor() + "  win !");
+						System.out.println("\n\n------------Player " + player.getColor() + " win ! ------------");
 					}
 				}
 				turn++;
