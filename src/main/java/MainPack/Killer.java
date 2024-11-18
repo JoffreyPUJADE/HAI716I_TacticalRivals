@@ -12,13 +12,13 @@ import Units.Unit;
 
 import java.util.*;
 
-public class Capturer extends Player
+public class Killer extends Player
 {
-	public Capturer(String color)
+	public Killer(String color)
 	{
 		super(color);
 	}
-
+	
 	@Override
 	public boolean play()
 	{
@@ -38,32 +38,32 @@ public class Capturer extends Player
 				Map<Tile, int[]> infoTile = new HashMap<>();
 
 				infoUnit.put(unit, coords);
-				// Stratégie : Chercher à capturer les ennemis en premier, sinon attaquer des unités
+				// Stratégie : Chercher à attaquer les ennemis en premier, sinon capturer un objectif
 				// sinon se diriger vers la base
-
 				for (Tile tile : tiles.keySet()){
-					if (tile instanceof Urban && !Objects.equals(tile.getColor(), getColor())){
 
+                    if (tile.getOccupiedBy() != null && !Objects.equals(tile.getOccupiedBy().getPlayer().getColor(), getColor())){
 						infoUnit.put(unit, coords);
 						infoTile.put(tile, tiles.get(tile));
-						boolean objectifReached = moveDistanceManhattan(infoUnit, infoTile);
+						moveDistanceManhattan(infoUnit, infoTile);
+                        actionDone = true;
+                        break;
+                    }
+                }
 
-						if (objectifReached){
-							capture(unit, tiles.get(tile));
-						}
-						actionDone = true;
-						break;
-					}
-				}
 
 				if (!actionDone){
 
 					for (Tile tile : tiles.keySet()){
+						if (tile instanceof Urban && !Objects.equals(tile.getColor(), getColor())){
 
-						if (tile.getOccupiedBy() != null && !Objects.equals(tile.getOccupiedBy().getPlayer().getColor(), getColor())){
 							infoUnit.put(unit, coords);
 							infoTile.put(tile, tiles.get(tile));
-							moveDistanceManhattan(infoUnit, infoTile);
+							boolean objectifReached = moveDistanceManhattan(infoUnit, infoTile);
+
+							if (objectifReached){
+								capture(unit, tiles.get(tile));
+							}
 							actionDone = true;
 							break;
 						}

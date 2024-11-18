@@ -39,7 +39,16 @@ public abstract class Tile
 	public String getColor() {
 		return m_color;
 	}
-	
+
+	public void setColor(String color) {
+		this.m_color = color;
+	}
+
+	public void setSprite(String color) {
+		String[] path = this.m_sprite.split("/");
+		this.m_sprite = path[0] + "/" + path[1] + "/" + color + "/" + path[3];
+	}
+
 	public void takeTile(Unit u)
 	{
 		m_occupiedBy = u;

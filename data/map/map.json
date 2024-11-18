@@ -31,9 +31,9 @@
       { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "water" , "color": "null"}, { "type": "water" , "color": "null"}
     ],
     [
-      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
+      { "type": "factory" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},
       { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"},
-      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "factory" , "color": "null"}
+      { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}
     ],
     [
       { "type": "plains" , "color": "null"}, { "type": "city" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"}, { "type": "plains" , "color": "null"},

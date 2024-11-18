@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MapPanel extends JPanel {
@@ -69,7 +70,9 @@ public class MapPanel extends JPanel {
 
                         for (Player player : players){
                             if (player.getColor().equals(color)){
-                                row.set(j, new Infantry(player));
+                                Infantry soldat = new Infantry(player);
+                                tile.takeTile(soldat);
+                                row.set(j, soldat);
                             }
                         }
                     }
@@ -80,9 +83,38 @@ public class MapPanel extends JPanel {
         setVisible(true);
     }
 
-    public Map<Tile, int[]> scanTilesAroundUnit(int speed) {
-        Map<Tile, int[]> tiles = new HashMap<>();
-        return tiles;
+    public Map<Tile, int[]> scanTilesAroundUnit(int[] coords, int range) {
+        int x = coords[0];
+        int y = coords[1];
+        Map<Tile, int[]> surroundingTiles = new HashMap<>();
+
+        // Collecter toutes les tuiles dans le rayon
+        for (int i = Math.max(0, x - range); i <= Math.min(m_map.size() - 1, x + range); i++) {
+            for (int j = Math.max(0, y - range); j <= Math.min(m_map.get(i).size() - 1, y + range); j++) {
+                int distanceSquared = (i - x) * (i - x) + (j - y) * (j - y);
+                if (distanceSquared <= range * range) {
+                    surroundingTiles.put(m_map.get(i).get(j), new int[]{i, j});
+                }
+            }
+        }
+
+        // Convertir le HashMap en une liste triée
+        List<Map.Entry<Tile, int[]>> tileList = new ArrayList<>(surroundingTiles.entrySet());
+        tileList.sort((e1, e2) -> {
+            int[] pos1 = e1.getValue();
+            int[] pos2 = e2.getValue();
+            int dist1 = (pos1[0] - x) * (pos1[0] - x) + (pos1[1] - y) * (pos1[1] - y);
+            int dist2 = (pos2[0] - x) * (pos2[0] - x) + (pos2[1] - y) * (pos2[1] - y);
+            return Integer.compare(dist1, dist2);
+        });
+
+        // Recréer un HashMap dans l'ordre trié
+        Map<Tile, int[]> sortedTiles = new HashMap<>();
+        for (Map.Entry<Tile, int[]> entry : tileList) {
+            sortedTiles.put(entry.getKey(), entry.getValue());
+        }
+
+        return sortedTiles;
     }
 
 
@@ -90,7 +122,7 @@ public class MapPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int tileSize = 64;
+        int tileSize = 48;
 
         // Calculer les décalages pour centrer la carte
         int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 4;
@@ -107,7 +139,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages pour centrer les tuiles
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + row * tileSize, width * 4, height * 4, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + row * tileSize, width * 3, height * 3, this);
                     }
                 }
             }
@@ -124,7 +156,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (height*2), width * 4, height * 4, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize) - (int) (height*1.5), width * 3, height * 3, this);
                     }
                 }
             }
@@ -141,7 +173,7 @@ public class MapPanel extends JPanel {
                         int width = img.getWidth(null);
                         int height = img.getHeight(null);
                         // Appliquer les décalages et ajuster la position verticale pour simuler le dépassement
-                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize), width * 4, height * 4, this);
+                        g.drawImage(img, xOffset + col * tileSize, yOffset + (row * tileSize), width * 3, height * 3, this);
                     }
                 }
             }
@@ -173,7 +205,7 @@ public class MapPanel extends JPanel {
     public ArrayList<City> getCities(String color) {
         ArrayList<City> cities = new ArrayList<>();
         for (int i = 0; i < m_map.size(); i++) {
-            for (int j = 0; j < m_map.get(i).size(); i++){
+            for (int j = 0; j < m_map.get(i).size(); j++){
                 City city = m_map.get(i).get(j) instanceof City ? (City) m_map.get(i).get(j) : null;
                 if (city != null && city.getColor().equals(color)){
                     cities.add(city);
@@ -196,26 +228,27 @@ public class MapPanel extends JPanel {
         return units;
     }
 
-
-    public Map<Urban, int[]> getCoordOfAllCapturableTiles(String playerColor) {
-        Map<Urban, int[]> tiles = new HashMap<>();
+    public Map<Factory, int[]> getCoordOfAllFactories() {
+        Map<Factory, int[]> factories = new HashMap<>();
         for (int i = 0; i < m_map.size(); i++) {
             for (int j = 0; j < m_map.get(i).size(); j++) {
-                Urban tile = m_map.get(i).get(j) instanceof Urban ? (Urban) m_map.get(i).get(j) : null;
-                if (tile != null && !tile.getColor().equals(playerColor)) {
-                    tiles.put(tile, new int[]{i, j});
+                Tile tile = m_map.get(i).get(j);
+                if (tile instanceof Factory) {
+                    factories.put((Factory) tile, new int[]{i, j});
                 }
             }
         }
-        return tiles;
+        return factories;
     }
 
-    public ArrayList<Base> getBases() {
-        ArrayList<Base> bases = new ArrayList<>();
+    public Map<Base, int[]> getOpponentBase(String color) {
+        Map<Base, int[]> bases = new HashMap<>();
         for (int i = 0; i < m_map.size(); i++) {
             for (int j = 0; j < m_map.get(i).size(); j++) {
-                if (m_map.get(i).get(j) instanceof Base) {
-                    bases.add((Base) m_map.get(i).get(j));
+                if (m_map.get(i).get(j) instanceof Base){
+                    if (!m_map.get(i).get(j).getColor().equals(color)) {
+                        bases.put((Base) m_map.get(i).get(j), new int[]{i, j});
+                    }
                 }
             }
         }

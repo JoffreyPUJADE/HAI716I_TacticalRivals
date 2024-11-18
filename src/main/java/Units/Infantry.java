@@ -6,6 +6,6 @@ public class Infantry extends Unit
 {
 	public Infantry(Player player)
 	{
-		super(10, 3, 3, 5, 1, player, "data/sprite/"+ player.getColor() +"/soldat.png", 10);
+		super(10, 3, 3, 4, 1, player, "data/sprite/"+ player.getColor() +"/soldat.png", 10);
 	}
 }
