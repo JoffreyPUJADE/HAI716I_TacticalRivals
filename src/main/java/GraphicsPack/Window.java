@@ -12,6 +12,8 @@ public class Window extends JFrame implements WindowListener
 	{
 		super(windowName);
 		
+		setLayout(null);
+		
 		m_width = width;
 		m_height = height;
 		

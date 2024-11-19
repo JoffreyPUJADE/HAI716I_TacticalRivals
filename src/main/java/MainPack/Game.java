@@ -2,6 +2,7 @@ package MainPack;
 
 import GraphicsPack.MapPanel;
 import GraphicsPack.Window;
+import GraphicsPack.ActionHistory;
 import Tiles.City;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Game {
 	private MapPanel m_map;
+	private ActionHistory m_history;
 	private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new Capturer("blue"), new Killer("red")));
 	private static Game instance;
 
@@ -22,9 +24,16 @@ public class Game {
 
 		Window window = new Window("Tactical Rivals", map_size[0], map_size[1]);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		m_history = new ActionHistory((int)(((double)screenSize.width / 3) * 2.70), 0, screenSize.width / 3, screenSize.height - 96);
+		m_history.addAction(true, "Le jeu a été lancé.");
+		m_history.addAction("Initialisation.");
 
 		window.setBounds(0, 0, screenSize.width, screenSize.height);
 		window.add(m_map);
+		window.add(m_history);
+		
+		m_history.addAction("Fin de l'initialisation.");
 	}
 	
 	public void run()
@@ -70,5 +79,10 @@ public class Game {
 
 	public MapPanel getMap() {
 		return m_map;
+	}
+	
+	public ActionHistory getHistory()
+	{
+		return m_history;
 	}
 }

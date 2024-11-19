@@ -21,6 +21,9 @@ public class MapPanel extends JPanel {
     private ArrayList<ArrayList<Unit>> m_units;
 
     public MapPanel() {
+    	super();
+    	setLayout(null);
+    	
         MapData mapData = MapLoader.loadMap("data/map/map.json");
         if (mapData == null) {
             JOptionPane.showMessageDialog(null, "Map not found");
@@ -80,7 +83,10 @@ public class MapPanel extends JPanel {
                 m_units.add(row);
             }
         }
+        
         setVisible(true);
+        revalidate();
+        repaint();
     }
 
     public Map<Tile, int[]> scanTilesAroundUnit(int[] coords, int range) {
@@ -127,6 +133,10 @@ public class MapPanel extends JPanel {
         // Calculer les décalages pour centrer la carte
         int xOffset = (getWidth() - (m_map.get(0).size() * tileSize)) / 4;
         int yOffset = (getHeight() - (m_map.size() * tileSize)) / 2;
+        
+        // La position "globale" de la map étant définie et forcée dans Game, on ajuste la position "locale" de la map par rapport à la globale.
+        xOffset += getX();
+        yOffset += getY() * 2;
 
         // Première passe: Dessiner les tuiles normales (Plain, Water)
         for (int row = 0; row < m_map.size(); row++) {
