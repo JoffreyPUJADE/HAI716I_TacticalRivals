@@ -1,6 +1,7 @@
 package MainPack;
 
 import GraphicsPack.MapPanel;
+import GraphicsPack.ActionHistory;
 import Tiles.Base;
 import Tiles.Tile;
 
@@ -24,6 +25,7 @@ public abstract class Player
 	public void attack(Unit u1, Unit u2)
 	{
 		Game game = Game.getInstance();
+		ActionHistory history = game.getHistory();
 		MapPanel mapPanel = game.getMap();
 		ArrayList<ArrayList<Unit>> m_units = mapPanel.getUnits();
 		ArrayList<ArrayList<Tile>> m_map = mapPanel.getMap();
@@ -42,13 +44,21 @@ public abstract class Player
 				if (currentUnit == u1 && u1.isDead()) {
 					m_units.get(i).set(j, null);
 					m_map.get(i).get(j).takeTile(null);
-					System.out.println("The " + u1.getPlayer().getColor()  + " " + u1.getClass().getSimpleName().toLowerCase() + " in " + Arrays.toString(new int[]{i, j}) + " has been destroyed !" );
+					
+					String u1Drestroyed = String.format("The %s %s in %s has been destroyed !", u1.getPlayer().getColor(), u1.getClass().getSimpleName().toLowerCase(), Arrays.toString(new int[]{i, j}));
+					System.out.println(u1Drestroyed);
+					history.addAction(u1Drestroyed);
+					history.repaint();
 				}
 
 				if (currentUnit == u2 && u2.isDead()) {
 					m_units.get(i).set(j, null);
 					m_map.get(i).get(j).takeTile(null);
-					System.out.println("The " + u2.getPlayer().getColor()  + " " + u2.getClass().getSimpleName().toLowerCase() + " in " + Arrays.toString(new int[]{i, j}) + " has been destroyed !" );
+					
+					String u2Drestroyed = String.format("The %s %s in %s has been destroyed !", u2.getPlayer().getColor(), u2.getClass().getSimpleName().toLowerCase(), Arrays.toString(new int[]{i, j}));
+					System.out.println(u2Drestroyed);
+					history.addAction(u2Drestroyed);
+					history.repaint();
 				}
 			}
 		}
@@ -59,6 +69,7 @@ public abstract class Player
 	public void capture(Unit u1, int[] coords)
 	{
 		Game game = Game.getInstance();
+		ActionHistory history = game.getHistory();
 		MapPanel mapPanel = game.getMap();
 		ArrayList<ArrayList<Tile>> map = mapPanel.getMap();
 
@@ -71,8 +82,12 @@ public abstract class Player
 		tile.takeTile(u1);
 		tile.setColor(u1.getPlayer().getColor());
 		tile.setSprite(u1.getPlayer().getColor());
-
-		System.out.println("The "+ tile.getClass().getSimpleName().toLowerCase() + " in " + Arrays.toString(new int[]{coords[0], coords[1]}) + " has been captured by the " + u1.getPlayer().getColor() + " player !" );
+		
+		String captureAction = String.format("The %s in %s has been captured by the %s player !", tile.getClass().getSimpleName().toLowerCase(), Arrays.toString(new int[]{coords[0], coords[1]}), u1.getPlayer().getColor());
+		System.out.println(captureAction);
+		history.addAction(captureAction);
+		history.repaint();
+		
 		mapPanel.repaint();
 	}
 
@@ -80,6 +95,7 @@ public abstract class Player
 	public void generateUnit(Unit u, int[] coords)
 	{
 		Game game = Game.getInstance();
+		ActionHistory history = game.getHistory();
 		MapPanel mapPanel = game.getMap();
 		ArrayList<ArrayList<Unit>> units = mapPanel.getUnits();
 		ArrayList<ArrayList<Tile>> map = mapPanel.getMap();
@@ -89,8 +105,12 @@ public abstract class Player
 
 		units.get(coords[0]).set(coords[1], u);
 		m_gold -= u.getCost();
-
-		System.out.println("The factory in " + Arrays.toString(new int[]{coords[0], coords[1]}) + " produced a " + u.getClass().getSimpleName().toLowerCase() + " !" );
+		
+		String genUnitAction = String.format("The factory in %s produced a %s !", Arrays.toString(new int[]{coords[0], coords[1]}), u.getClass().getSimpleName().toLowerCase());
+		System.out.println(genUnitAction);
+		history.addAction(genUnitAction);
+		history.repaint();
+		
 		mapPanel.repaint();
 	}
 

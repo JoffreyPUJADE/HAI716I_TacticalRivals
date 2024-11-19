@@ -41,7 +41,8 @@ public class ActionHistory extends JPanel
 	{
 		m_history.add(new ActionG(false, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 		
-		redraw();
+		//redraw();
+		adding();
 	}
 	
 	// Action dont on définit la couleur (true : rouge, false : noir).
@@ -49,7 +50,8 @@ public class ActionHistory extends JPanel
 	{
 		m_history.add(new ActionG(urgence, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 		
-		redraw();
+		//redraw();
+		adding();
 	}
 	
 	// Action dont on... Ajoute l'action.
@@ -57,7 +59,8 @@ public class ActionHistory extends JPanel
 	{
 		m_history.add(new ActionG(action.isUrgent(), action.getMessage(), action.getPosX(), action.getPosY(), action.getWidth(), action.getHeight()));
 		
-		redraw();
+		//redraw();
+		adding();
 	}
 	
 	public int getPosX()
@@ -136,6 +139,14 @@ public class ActionHistory extends JPanel
 		// On force le réaffichage.
 		revalidate();
 		repaint();
+	}
+	
+	private void adding()
+	{
+		int totalHeight = calculateCurrentItemsHeight();
+		
+		m_contentPanel.setPreferredSize(new Dimension(maxWidth(), totalHeight));
+		m_contentPanel.add(m_history.get(m_history.size() - 1));
 	}
 	
 	private int calculateCurrentItemsHeight()

@@ -25,15 +25,18 @@ public class Game {
 		Window window = new Window("Tactical Rivals", map_size[0], map_size[1]);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		m_history = new ActionHistory((int)(((double)screenSize.width / 3) * 2.70), 0, screenSize.width / 3, screenSize.height - 96);
+		m_history = new ActionHistory(screenSize.width - screenSize.width / 3, 0, screenSize.width / 4, screenSize.height - 96);
 		m_history.addAction(true, "Le jeu a été lancé.");
 		m_history.addAction("Initialisation.");
+		
+		m_map.setBounds(25, 25, map_size[0] * 67, map_size[1] * 67);
 
 		window.setBounds(0, 0, screenSize.width, screenSize.height);
 		window.add(m_map);
 		window.add(m_history);
 		
 		m_history.addAction("Fin de l'initialisation.");
+		m_history.repaint();
 	}
 	
 	public void run()
@@ -43,14 +46,22 @@ public class Game {
 			int turn = 1;
 			while (!anyWinner){
 				for (Player player : m_players) {
-					System.out.println("\n\n------------ Turn " + turn + " of player " + player.getColor() + " ------------");
+					String turnAnnouncement = String.format("------------ Turn %d of player %s ------------", turn, player.getColor());
+					System.out.println("\n\n" + turnAnnouncement);
+					m_history.addAction(true, turnAnnouncement);
+					m_history.repaint();
+					
 					TimeUnit.MILLISECONDS.sleep(500);
 					addGold(player);
 					TimeUnit.MILLISECONDS.sleep(500);
 					boolean isWinner = player.play();
+					
 					if (isWinner) {
 						anyWinner = true;
-						System.out.println("\n\n------------Player " + player.getColor() + " win ! ------------");
+						String winAnnouncement = String.format("------------Player %s win ! ------------", player.getColor());
+						System.out.println("\n\n" + winAnnouncement);
+						m_history.addAction(true, winAnnouncement);
+						m_history.repaint();
 						break;
 					}
 				}
@@ -64,8 +75,12 @@ public class Game {
 	public void addGold(Player player) {
 		ArrayList<City> cities = m_map.getCities(player.getColor());
 		int gold = cities.size() * 100;
-		System.out.println(gold + " gold added to player " + player.getColor());
 		player.addGold(gold);
+		
+		String addGoldAction = String.format("%d gold added to player %s", gold, player.getColor());
+		System.out.println(addGoldAction);
+		m_history.addAction(addGoldAction);
+		m_history.repaint();
 	}
 	
 	public static ArrayList<Player> getPlayers()
