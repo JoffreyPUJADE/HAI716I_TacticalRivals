@@ -64,7 +64,7 @@ public class MapPanel extends JPanel {
                 for (int j = 0; j < m_map.get(i).size(); j++) {
                     Tile tile = m_map.get(i).get(j);
                     row.add(null);
-                    if (tile instanceof City) {
+                    if (tile instanceof Factory) {
                         String color = tile.getColor();
                         ArrayList<Player> players = Game.getPlayers();
 
@@ -178,28 +178,6 @@ public class MapPanel extends JPanel {
                 }
             }
         }
-    }
-    
-    public ArrayList<ArrayList<Unit>> getUnits(Player p)
-    {
-    	ArrayList<ArrayList<Unit>> arrayRes = new ArrayList<>();
-    	
-    	for(int i=0;i<m_units.size();++i)
-    	{
-    		ArrayList<Unit> arrayTemp = new ArrayList<Unit>();
-    		
-    		for(int j=0;j<m_units.get(i).size();++j)
-    		{
-    			if(m_units.get(i).get(j).getPlayer() == p)
-    			{
-    				arrayTemp.add(m_units.get(i).get(j));
-    			}
-    		}
-    		
-    		arrayRes.add(arrayTemp);
-    	}
-    	
-    	return arrayRes;
     }
 
     public ArrayList<City> getCities(String color) {

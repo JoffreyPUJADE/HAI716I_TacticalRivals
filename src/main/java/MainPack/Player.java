@@ -90,7 +90,7 @@ public abstract class Player
 		units.get(coords[0]).set(coords[1], u);
 		m_gold -= u.getCost();
 
-		System.out.println("The Factory in " + Arrays.toString(new int[]{coords[0], coords[1]}) + " produced a " + u.getClass().getName().toLowerCase() + " !" );
+		System.out.println("The factory in " + Arrays.toString(new int[]{coords[0], coords[1]}) + " produced a " + u.getClass().getSimpleName().toLowerCase() + " !" );
 		mapPanel.repaint();
 	}
 

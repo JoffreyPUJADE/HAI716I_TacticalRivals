@@ -55,26 +55,37 @@ public class Capturer extends Player
 				}
 
 				if (!actionDone){
-					for (Tile tile : tiles.keySet()){
-						if (tile.getOccupiedBy() != null && !Objects.equals(tile.getOccupiedBy().getPlayer().getColor(), getColor())){
-
+					for (Tile tile : tiles.keySet()) {
+						if (tile.getOccupiedBy() != null && !Objects.equals(tile.getOccupiedBy().getPlayer().getColor(), getColor())) {
 							int[] enemyCoords = units.get(tile.getOccupiedBy());
-							int distance = Math.abs(coords[0] - enemyCoords[0]) + Math.abs(coords[1] - enemyCoords[1]);
 							int attackRange = unit.getRange();
+							int distance = Math.abs(coords[0] - enemyCoords[0]) + Math.abs(coords[1] - enemyCoords[1]);
 							if (distance <= attackRange) {
 								attack(unit, tile.getOccupiedBy());
 								actionDone = true;
 								break;
-							} else {
-								infoUnit.put(unit, coords);
-								infoTile.put(tile, tiles.get(tile));
-								boolean objectifReached = moveDistanceManhattan(infoUnit, infoTile);
-								if (objectifReached) {
-									attack(unit, tile.getOccupiedBy());
-									actionDone = true;
+							}
+
+							Map<Tile, int[]> adjTiles = map.scanTilesAroundUnit(enemyCoords, 1);
+							for (Tile adjTile : adjTiles.keySet()) {
+								if (adjTile.getOccupiedBy() == null && !adjTile.isObstacle()) {
+									infoUnit.put(unit, coords);
+									infoTile.put(adjTile, adjTiles.get(adjTile));
+
+
+									boolean moved = moveDistanceManhattan(infoUnit, infoTile);
+									if (moved) {
+										distance = Math.abs(adjTiles.get(adjTile)[0] - enemyCoords[0]) +
+												Math.abs(adjTiles.get(adjTile)[1] - enemyCoords[1]);
+										if (distance <= attackRange) {
+											attack(unit, tile.getOccupiedBy());
+											actionDone = true;
+										}
+									}
 									break;
 								}
 							}
+							if (actionDone) break;
 						}
 					}
 

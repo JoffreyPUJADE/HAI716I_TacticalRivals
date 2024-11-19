@@ -42,6 +42,7 @@ public class Game {
 					if (isWinner) {
 						anyWinner = true;
 						System.out.println("\n\n------------Player " + player.getColor() + " win ! ------------");
+						break;
 					}
 				}
 				turn++;
