@@ -34,8 +34,8 @@ public class Game {
 		
 		m_map.setBounds(25, 25, map_size[0] * 67, map_size[1] * 67);
 		
-		m_displayGold.put(m_players.get(0), new GoldGraphics(240, (screenSize.height / 3) * 2 + 50, 100, 50, Color.BLUE, m_players.get(0).getGold()));
-		m_displayGold.put(m_players.get(1), new GoldGraphics(500, (screenSize.height / 3) * 2 + 50, 100, 50, Color.RED, m_players.get(1).getGold()));
+		m_displayGold.put(m_players.get(0), new GoldGraphics(140, (screenSize.height / 3) * 2 + 50, 250, 50, Color.BLUE, m_players.get(0).getGold()));
+		m_displayGold.put(m_players.get(1), new GoldGraphics(550, (screenSize.height / 3) * 2 + 50, 250, 50, Color.RED, m_players.get(1).getGold()));
 
 		window.setBounds(0, 0, screenSize.width, screenSize.height);
 		window.add(m_map);

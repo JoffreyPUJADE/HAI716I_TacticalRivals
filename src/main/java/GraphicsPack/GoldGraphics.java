@@ -2,6 +2,10 @@ package GraphicsPack;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GradientPaint;
+import java.awt.Font;
+import java.awt.FontMetrics;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,7 +20,6 @@ public class GoldGraphics extends JPanel {
 	private int m_xTxt;
 	private int m_yTxt;
 	private String m_strGold;
-	private JLabel m_labelGold;
 	
 	public GoldGraphics(int x, int y, int width, int height, Color playerColor, int gold) {
 		super();
@@ -35,13 +38,7 @@ public class GoldGraphics extends JPanel {
 		setLayout(null);
 		setBounds(m_x, m_y, m_width, m_height);
 		
-		m_labelGold = new JLabel();
-		m_labelGold.setBounds(m_xTxt, m_yTxt, m_width, m_height);
-		
 		m_strGold = String.format("G.     %d", m_gold);
-		m_labelGold.setText(m_strGold);
-		
-		add(m_labelGold);
 		
 		setVisible(true);
 	}
@@ -90,7 +87,6 @@ public class GoldGraphics extends JPanel {
 	
 	public void redraw() {
 		m_strGold = String.format("G.     %d", m_gold);
-		m_labelGold.setText(m_strGold);
 		
 		setVisible(true);
 		revalidate();
@@ -101,9 +97,30 @@ public class GoldGraphics extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(m_playerColor);
-		g.drawRect(0, 0, m_width - 1, m_height - 1);
-		g.fillRect(0, 0, m_width - 1, m_height - 1);
+		int arcWidth = 50;
+		int arcHeight = 50;
+		
+		Graphics2D g2d = (Graphics2D)g;
+		GradientPaint gradient = new GradientPaint(0, 0, m_playerColor.darker(), m_width, m_height, m_playerColor.brighter());
+		
+		g2d.setPaint(gradient);
+		g2d.fillRoundRect(0, 0, m_width, m_height, arcWidth, arcHeight);
+		
+		g2d.setColor(m_playerColor.darker());
+		g2d.drawRoundRect(0, 0, m_width - 1, m_height - 1, arcWidth, arcHeight);
+		
 		g.setColor(Color.WHITE);
+		
+		Font font = g.getFont().deriveFont(Font.BOLD, 14);
+		g.setFont(font);
+		FontMetrics metrics = g.getFontMetrics(font);
+		
+		int textWidth = metrics.stringWidth(m_strGold);
+		int textHeight = metrics.getHeight();
+		
+		int x = (m_width - textWidth) / 2;
+		int y = (m_height - textHeight) / 2 + metrics.getAscent();
+		
+		g.drawString(m_strGold, x, y);
 	}
 }
