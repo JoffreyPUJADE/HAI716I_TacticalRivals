@@ -3,17 +3,20 @@ package MainPack;
 import GraphicsPack.MapPanel;
 import GraphicsPack.Window;
 import GraphicsPack.ActionHistory;
+import GraphicsPack.GoldGraphics;
 import Tiles.City;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
 	private MapPanel m_map;
 	private ActionHistory m_history;
 	private static ArrayList<Player> m_players = new ArrayList<>(Arrays.asList(new Capturer("blue"), new Killer("red")));
+	private static HashMap<Player, GoldGraphics> m_displayGold = new HashMap<>();
 	private static Game instance;
 
 	public Game()
@@ -30,10 +33,15 @@ public class Game {
 		m_history.addAction("Initialisation.");
 		
 		m_map.setBounds(25, 25, map_size[0] * 67, map_size[1] * 67);
+		
+		m_displayGold.put(m_players.get(0), new GoldGraphics(240, (screenSize.height / 3) * 2 + 50, 100, 50, Color.BLUE, m_players.get(0).getGold()));
+		m_displayGold.put(m_players.get(1), new GoldGraphics(500, (screenSize.height / 3) * 2 + 50, 100, 50, Color.RED, m_players.get(1).getGold()));
 
 		window.setBounds(0, 0, screenSize.width, screenSize.height);
 		window.add(m_map);
 		window.add(m_history);
+		window.add(m_displayGold.get(m_players.get(0)));
+		window.add(m_displayGold.get(m_players.get(1)));
 		
 		m_history.addAction("Fin de l'initialisation.");
 		m_history.repaint();
@@ -76,6 +84,7 @@ public class Game {
 		ArrayList<City> cities = m_map.getCities(player.getColor());
 		int gold = cities.size() * 100;
 		player.addGold(gold);
+		m_displayGold.get(player).updateGold(gold);
 		
 		String addGoldAction = String.format("%d gold added to player %s", gold, player.getColor());
 		System.out.println(addGoldAction);
@@ -99,5 +108,10 @@ public class Game {
 	public ActionHistory getHistory()
 	{
 		return m_history;
+	}
+	
+	public GoldGraphics getGoldGraphics(Player player)
+	{
+		return m_displayGold.get(player);
 	}
 }

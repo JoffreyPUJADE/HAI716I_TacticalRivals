@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
-public class ActionHistory extends JPanel
-{
+public class ActionHistory extends JPanel {
 	private int m_x;
 	private int m_y;
 	private int m_width;

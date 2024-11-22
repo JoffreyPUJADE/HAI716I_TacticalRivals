@@ -3,8 +3,7 @@ package GraphicsPack;
 import javax.swing.*;
 import java.awt.*;
 
-public class ActionG extends JPanel
-{
+public class ActionG extends JPanel {
 	private boolean m_urgent;
 	private String m_message;
 	private int m_x;

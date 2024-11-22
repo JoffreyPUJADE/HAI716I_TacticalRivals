@@ -2,6 +2,7 @@ package MainPack;
 
 import GraphicsPack.MapPanel;
 import GraphicsPack.ActionHistory;
+import GraphicsPack.GoldGraphics;
 import Tiles.Base;
 import Tiles.Tile;
 
@@ -96,6 +97,7 @@ public abstract class Player
 	{
 		Game game = Game.getInstance();
 		ActionHistory history = game.getHistory();
+		GoldGraphics gg = game.getGoldGraphics(this);
 		MapPanel mapPanel = game.getMap();
 		ArrayList<ArrayList<Unit>> units = mapPanel.getUnits();
 		ArrayList<ArrayList<Tile>> map = mapPanel.getMap();
@@ -105,6 +107,7 @@ public abstract class Player
 
 		units.get(coords[0]).set(coords[1], u);
 		m_gold -= u.getCost();
+		gg.updateGold(m_gold);
 		
 		String genUnitAction = String.format("The factory in %s produced a %s !", Arrays.toString(new int[]{coords[0], coords[1]}), u.getClass().getSimpleName().toLowerCase());
 		System.out.println(genUnitAction);
