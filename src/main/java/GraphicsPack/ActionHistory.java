@@ -104,7 +104,7 @@ public class ActionHistory extends JPanel
 	}
 	
 	// Méthode jamais appelée ; ne provoque pas de lags sur l'ajout d'actions à l'affichage mais reset la scroll bar verticale vers le haut.
-	/*public void redraw()
+	public void redraw()
 	{
 		// Suppression de tous les composants de la classe.
 		removeAll();
@@ -140,7 +140,7 @@ public class ActionHistory extends JPanel
 		// On force le réaffichage.
 		revalidate();
 		repaint();
-	}*/
+	}
 	
 	private void adding()
 	{
