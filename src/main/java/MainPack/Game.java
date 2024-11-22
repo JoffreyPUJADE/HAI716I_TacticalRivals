@@ -29,8 +29,8 @@ public class Game {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		m_history = new ActionHistory(screenSize.width - screenSize.width / 3, 0, screenSize.width / 4, screenSize.height - 96);
-		m_history.addAction(true, "Le jeu a été lancé.");
-		m_history.addAction("Initialisation.");
+		m_history.addAction(true, "The game has been launched.");
+		m_history.addAction("Initialization.");
 		
 		m_map.setBounds(25, 25, map_size[0] * 67, map_size[1] * 67);
 		
@@ -43,7 +43,7 @@ public class Game {
 		window.add(m_displayGold.get(m_players.get(0)));
 		window.add(m_displayGold.get(m_players.get(1)));
 		
-		m_history.addAction("Fin de l'initialisation.");
+		m_history.addAction("End of initialization.");
 		m_history.repaint();
 	}
 	
