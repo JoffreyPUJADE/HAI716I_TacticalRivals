@@ -33,34 +33,40 @@ public class ActionHistory extends JPanel
 		
 		m_history = new ArrayList<>();
 		
-		redraw();
+		setLayout(null);
+		setBounds(m_x, m_y, m_width, m_height);
+		
+		m_contentPanel = new JPanel();
+		m_contentPanel.setLayout(null);
+		
+		// Création JScrollPane.
+		m_scrollPane = new JScrollPane(m_contentPanel);
+		m_scrollPane.setBounds(0, 0, m_width, m_height);
+		m_scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		m_scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		m_scrollPane.setPreferredSize(new Dimension(m_width, m_height));
+		
+		add(m_scrollPane);
 	}
 	
 	// Action en noir.
 	public void addAction(String action)
 	{
-		m_history.add(new ActionG(false, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
-		
-		//redraw();
-		adding();
+		addAction(new ActionG(false, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 	}
 	
 	// Action dont on définit la couleur (true : rouge, false : noir).
 	public void addAction(boolean urgence, String action)
 	{
-		m_history.add(new ActionG(urgence, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
-		
-		//redraw();
-		adding();
+		addAction(new ActionG(urgence, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 	}
 	
 	// Action dont on... Ajoute l'action.
 	public void addAction(ActionG action)
 	{
-		m_history.add(new ActionG(action.isUrgent(), action.getMessage(), action.getPosX(), action.getPosY(), action.getWidth(), action.getHeight()));
+		m_history.add(action);
 		
-		//redraw();
-		adding();
+		redrawAfterAddingAction();
 	}
 	
 	public int getPosX()
@@ -101,53 +107,6 @@ public class ActionHistory extends JPanel
 	public void setHeight(int height)
 	{
 		m_height = height;
-	}
-	
-	// Méthode jamais appelée ; ne provoque pas de lags sur l'ajout d'actions à l'affichage mais reset la scroll bar verticale vers le haut.
-	public void redraw()
-	{
-		// Suppression de tous les composants de la classe.
-		removeAll();
-		
-		// Réinitialisation de l'affichage de la classe.
-		setLayout(null);
-		setBounds(m_x, m_y, m_width, m_height);
-		
-		// Création panel contenu.
-		m_contentPanel = new JPanel();
-		m_contentPanel.setLayout(null);
-		
-		int totalHeight = calculateCurrentItemsHeight();
-		
-		m_contentPanel.setPreferredSize(new Dimension(maxWidth(), totalHeight));
-		
-		// Ajout des actions.
-		for(int i=0;i<m_history.size();++i)
-		{
-			m_contentPanel.add(m_history.get(i));
-		}
-		
-		// Création JScrollPane.
-		m_scrollPane = new JScrollPane(m_contentPanel);
-		m_scrollPane.setBounds(0, 0, m_width, m_height);
-		m_scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		m_scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		m_scrollPane.setPreferredSize(new Dimension(m_width, m_height));
-		
-		add(m_scrollPane);
-		setVisible(true);
-		
-		// On force le réaffichage.
-		revalidate();
-		repaint();
-	}
-	
-	private void adding()
-	{
-		int totalHeight = calculateCurrentItemsHeight();
-		
-		m_contentPanel.setPreferredSize(new Dimension(maxWidth(), totalHeight));
-		m_contentPanel.add(m_history.get(m_history.size() - 1));
 	}
 	
 	private int calculateCurrentItemsHeight()
@@ -193,6 +152,16 @@ public class ActionHistory extends JPanel
 		}
 		
 		return max;
+	}
+	
+	private void redrawAfterAddingAction()
+	{
+		m_contentPanel.add(m_history.get(m_history.size() - 1));
+		m_contentPanel.setPreferredSize(new Dimension(maxWidth(), calculateCurrentItemsHeight()));
+		m_contentPanel.revalidate();
+		m_contentPanel.repaint();
+		JScrollBar verticalScrollBar = m_scrollPane.getVerticalScrollBar();
+		verticalScrollBar.setValue(verticalScrollBar.getMaximum());
 	}
 	
 	@Override
