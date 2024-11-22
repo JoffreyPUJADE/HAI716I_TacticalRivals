@@ -13,8 +13,7 @@ public class ActionG extends JPanel
 	private int m_height;
 	private JLabel m_actionLabel;
 	
-	public ActionG(boolean urgence, String message, int x, int y, int width, int height)
-	{
+	public ActionG(boolean urgence, String message, int x, int y, int width, int height) {
 		super();
 		
 		m_urgent = urgence;
@@ -28,68 +27,60 @@ public class ActionG extends JPanel
 		setVisible(true);
 	}
 	
-	public String getMessage()
-	{
+	public String getMessage() {
 		return m_message;
 	}
 	
-	public int getPosX()
-	{
+	public int getPosX() {
 		return m_x;
 	}
 	
-	public int getPosY()
-	{
+	public int getPosY() {
 		return m_y;
 	}
 	
-	public int getWidth()
-	{
+	public int getWidth() {
 		return m_width;
 	}
 	
-	public int getHeight()
-	{
+	public int getHeight() {
 		return m_height;
 	}
 	
-	public void setUrgence(boolean urgence)
-	{
+	public void setUrgence(boolean urgence) {
 		m_urgent = urgence;
 	}
 	
-	public void setMessage(String message)
-	{
+	public void setMessage(String message) {
 		m_message = message;
 	}
 	
-	public void setPosX(int x)
-	{
+	public void setPosX(int x) {
 		m_x = x;
 	}
 	
-	public void setPosY(int y)
-	{
+	public void setPosY(int y) {
 		m_y = y;
 	}
 	
-	public void setWidth(int width)
-	{
+	public void setWidth(int width) {
 		m_width = width;
 	}
 	
-	public void setHeight(int height)
-	{
+	public void setHeight(int height) {
 		m_height = height;
 	}
 	
-	public boolean isUrgent()
-	{
+	public boolean isUrgent() {
 		return m_urgent;
 	}
 	
-	public void redraw()
-	{
+	@Override
+	public String toString() {
+		return m_message;
+	}
+	
+	public void redraw() {
 		removeAll();
 		
 		setLayout(null);
@@ -107,8 +98,7 @@ public class ActionG extends JPanel
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g)
-	{
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		g.drawRect(0, 0, m_width - 1, m_height - 1);

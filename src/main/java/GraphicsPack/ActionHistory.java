@@ -17,8 +17,7 @@ public class ActionHistory extends JPanel
 	private JPanel m_contentPanel; // Panel qui contient les actions
 	private JScrollPane m_scrollPane; // ScrollPane pour gérer le défilement
 	
-	public ActionHistory(int x, int y, int width, int height)
-	{
+	public ActionHistory(int x, int y, int width, int height) {
 		super();
 		
 		m_x = x;
@@ -50,103 +49,99 @@ public class ActionHistory extends JPanel
 	}
 	
 	// Action en noir.
-	public void addAction(String action)
-	{
+	public void addAction(String action) {
 		addAction(new ActionG(false, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 	}
 	
 	// Action dont on définit la couleur (true : rouge, false : noir).
-	public void addAction(boolean urgence, String action)
-	{
+	public void addAction(boolean urgence, String action) {
 		addAction(new ActionG(urgence, action, 0, calculateYOfNewAction(), calculateWidthOfNewAction(action), m_heightActions));
 	}
 	
 	// Action dont on... Ajoute l'action.
-	public void addAction(ActionG action)
-	{
+	public void addAction(ActionG action) {
 		m_history.add(action);
 		
 		redrawAfterAddingAction();
 	}
 	
-	public int getPosX()
-	{
+	public int getPosX() {
 		return m_x;
 	}
 	
-	public int getPosY()
-	{
+	public int getPosY() {
 		return m_y;
 	}
 	
-	public int getWidth()
-	{
+	public int getWidth() {
 		return m_width;
 	}
 	
-	public int getHeight()
-	{
+	public int getHeight() {
 		return m_height;
 	}
 	
-	public void setPosX(int x)
-	{
+	public void setPosX(int x) {
 		m_x = x;
 	}
 	
-	public void setPosY(int y)
-	{
+	public void setPosY(int y) {
 		m_y = y;
 	}
 	
-	public void setWidth(int width)
-	{
+	public void setWidth(int width) {
 		m_width = width;
 	}
 	
-	public void setHeight(int height)
-	{
+	public void setHeight(int height) {
 		m_height = height;
 	}
 	
-	private int calculateCurrentItemsHeight()
-	{
+	@Override
+	public String toString() {
+		String strHistory = "";
+		
+		for(int i=0;i<m_history.size();++i) {
+			strHistory = String.format("%s %s", strHistory, m_history.get(i).toString());
+			
+			if(i < m_history.size() - 1) {
+				strHistory = String.format("%s\n\n", strHistory);
+			}
+		}
+		
+		return strHistory;
+	}
+	
+	private int calculateCurrentItemsHeight() {
 		return m_history.size() * m_heightActions;
 	}
 	
-	private int calculateYOfNewAction()
-	{
+	private int calculateYOfNewAction() {
 		return m_history.size() == 0 ? 0 : calculateCurrentItemsHeight();
 	}
 	
-	private FontMetrics getDefaultFontMetrics()
-	{
+	private FontMetrics getDefaultFontMetrics() {
 		Font defaultFont = new Font("Dialog", Font.PLAIN, 12);
 		Canvas cv = new Canvas();
 		return cv.getFontMetrics(defaultFont);
 	}
 	
-	private int defaultStringWidth(String str)
-	{
+	private int defaultStringWidth(String str) {
 		FontMetrics fm = getDefaultFontMetrics();
 		return fm.stringWidth(str);
 	}
 	
-	private int calculateWidthOfNewAction(String msgAction)
-	{
+	private int calculateWidthOfNewAction(String msgAction) {
 		int width = defaultStringWidth(msgAction);
 		
 		return width > m_widthActions ? width + width / 4 : m_widthActions;
 	}
 	
-	private int maxWidth()
-	{
+	private int maxWidth() {
 		int max = -1;
 		
-		for(int i=0;i<m_history.size();++i)
-		{
-			if(max < m_history.get(i).getWidth())
-			{
+		for(int i=0;i<m_history.size();++i) {
+			if(max < m_history.get(i).getWidth()) {
 				max = m_history.get(i).getWidth();
 			}
 		}
@@ -154,8 +149,7 @@ public class ActionHistory extends JPanel
 		return max;
 	}
 	
-	private void redrawAfterAddingAction()
-	{
+	private void redrawAfterAddingAction() {
 		m_contentPanel.add(m_history.get(m_history.size() - 1));
 		m_contentPanel.setPreferredSize(new Dimension(maxWidth(), calculateCurrentItemsHeight()));
 		m_contentPanel.revalidate();
@@ -165,8 +159,7 @@ public class ActionHistory extends JPanel
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g)
-	{
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		g.drawRect(0, 0, m_width - 1, m_height - 1);
